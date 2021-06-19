@@ -13,7 +13,7 @@ handler = WebhookHandler(SECRET)
 
 @app.route("/")
 def index():
-    return 'LINEbotのテストですニャー'
+    return 'LINEbotのテストだニャー'
 
 @app.route("/callback", methods=['POST'])
 def callback():
