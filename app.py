@@ -11,6 +11,10 @@ line_bot_api = LineBotApi(ACCESS_TOKEN)
 handler = WebhookHandler(SECRET)
 
 
+@app.route("/")
+def index():
+    return 'LINEbotのテストですニャー'
+
 @app.route("/callback", methods=['POST'])
 def callback():
     signature = request.headers['X-Line-Signature']
