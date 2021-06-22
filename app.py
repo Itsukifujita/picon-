@@ -15,6 +15,25 @@ handler = WebhookHandler(SECRET)
 def index():
     return render_template('index.html')
 
+@app.route("/login")
+def login():
+    return render_template('login.html')
+
+@app.route("/login", methods=['POST'])
+def login_post():
+    name = request.form.get("member_name")
+    password = request.form.get("member_pass")
+    conn = sqlite3.connect('flasktest.db')
+    c = conn.cursor()
+    c.execute("SELECT id FROM member WHERE name = ? AND pass = ?", (name, password))
+    member_id = c.fetchone()
+    c.close()
+    if member_id is None:
+        return render_template("login.html")
+    else:
+        session["member_id"] = menber_id
+        return redirect('/')    
+
 @app.route("/callback", methods=['POST'])
 def callback():
     signature = request.headers['X-Line-Signature']
