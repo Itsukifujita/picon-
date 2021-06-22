@@ -1,5 +1,6 @@
 const VIEW = {
-    functest: function() {
-
+    outputQR: function() {
+        $('#main').html('<img src="../static/font/QRコード.pmg">')
+        
     }
 };
