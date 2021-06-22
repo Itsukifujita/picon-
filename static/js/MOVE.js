@@ -1,0 +1,5 @@
+const MOVE = {
+    functest: function() {
+
+    }
+};
