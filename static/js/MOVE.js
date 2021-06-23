@@ -1,4 +1,4 @@
-const MOVE = {
+const JSMOVE = {
     functest: function() {
 
     }

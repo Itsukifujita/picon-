@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, request, session, abort
+from flask import Flask, render_template, redirect, request, session, abort, jsonify
 from linebot import (LineBotApi, WebhookHandler)
 from linebot.exceptions import (InvalidSignatureError)
 from linebot.models import (MessageEvent, TextMessage, TextSendMessage)
@@ -13,26 +13,45 @@ handler = WebhookHandler(SECRET)
 
 @app.route("/")
 def index():
-    return render_template('index.html')
+    if "user_id" in session:
+        user_id = session["user_id"][0]
+        return render_template('index.html')
+    else:
+        return redirect('/login')
 
 @app.route("/login")
 def login():
     return render_template('login.html')
 
-@app.route("/login", methods=['POST'])
-def login_post():
-    name = request.form.get("member_name")
+@app.route("/login_member", methods=['POST'])
+def login_member():
+    user_name = request.form.get("member_name")
     password = request.form.get("member_pass")
-    conn = sqlite3.connect('flasktest.db')
+    conn = sqlite3.connect('task.db')
     c = conn.cursor()
-    c.execute("SELECT id FROM member WHERE name = ? AND pass = ?", (name, password))
-    member_id = c.fetchone()
+    c.execute("SELECT user_id FROM user WHERE user_name = ? AND password = ?", (user_name, password))
+    user_id = c.fetchone()
     c.close()
-    if member_id is None:
+    if user_id is None:
         return render_template("login.html")
     else:
-        session["member_id"] = menber_id
-        return redirect('/')    
+        session["user_id"] = user_id
+        return redirect('/')
+
+@app.route("/entry")
+def entry():
+    return render_template('entry.html')
+
+@app.route("/entry_member", methods=['POST'])
+def entry_member():
+    user_name = request.form.get("member_name")
+    password = request.form.get("member_pass")
+    conn = sqlite3.connect('task.db')
+    c = conn.cursor()
+    c.execute("INSERT into user values (null, ?, ?, 0)", (user_name, password))
+    conn.commit()
+    c.close()
+    return redirect('/login.html')
 
 @app.route("/callback", methods=['POST'])
 def callback():
