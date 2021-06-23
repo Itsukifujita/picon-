@@ -3,7 +3,7 @@ $(function(){
         
     });
     $(document).on('click', '#login_button', function () {
-        JSGET.getUserId(); 
+        JSGET.getLoginUserId();
     });
 });
 

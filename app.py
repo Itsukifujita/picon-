@@ -25,18 +25,18 @@ def login():
 
 @app.route("/login_member", methods=['POST'])
 def login_member():
-    user_name = request.form.get("member_name")
-    password = request.form.get("member_pass")
+    user_name = request.json['name']
+    password = request.json['pass']
     conn = sqlite3.connect('task.db')
     c = conn.cursor()
     c.execute("SELECT user_id FROM user WHERE user_name = ? AND password = ?", (user_name, password))
     user_id = c.fetchone()
     c.close()
     if user_id is None:
-        return render_template("login.html")
+        return jsonify(ResultSet = json.dumps({"result": '0'}))
     else:
         session["user_id"] = user_id
-        return redirect('/')
+        return jsonify(ResultSet = json.dumps({"result": user_id}))
 
 @app.route("/entry")
 def entry():
