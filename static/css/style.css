@@ -1,16 +1,48 @@
-input, button, textarea, select {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
+header, body, h1, h2, h3, h4, h5, p, ul, ol, li, dl, dt, dd {
+	margin: 0px;
+	padding: 0px;
+}
+body {
+	background: #fff;
+	text-align: center;
+	font-size: 16px;
+	line-height: 1.4;
+	min-width: 100%;
+	-webkit-text-size-adjust: 100%;
+}
+li {
+	list-style: none;
+}
+a {
+	outline: none;
+	color: inherit;
+	text-decoration: none;
+}
+img {
+	border: 0px;
+	vertical-align: bottom;
 }
 
-
+/* ここから */
 #header{
     
     background-color: #75AC2D;
+    width: auto;
+    height: 50px;
     
 }
 
-/* #header img{
-    size:20px;
-} */
+#main img{
+    width:210px;
+    text-align: left;
+}
+#main{
+    background-color: #f4f4f4;
+    width: auto;
+    height: 700px;
+}
+
+
+#footer{
+    background-color:#656565 ;
+}
