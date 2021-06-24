@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
-<form action="/entry" method="POST" class="entry_spase">
+
     <h1 class="login_title">新規登録</h1>
-    <p class="login_name">名前<input type="text" name="member_name" class="input_login_name" maxlength="10"></p>
-    <p class="login_pass">パスワード<input type="password" name="member_pass" class="input_login_pass" maxlength="30"></p>
+    <p class="login_name">名前<input type="text" name="member_name" id="entry_login_name" maxlength="10"></p>
+    <p class="login_pass">パスワード<input type="password" name="member_pass" id="entry_login_pass" maxlength="30"></p>
     <input type="submit" name="entry" class="login_button" value="新規登録">
-</form>
+    <a href="/login" class="button">ログイン画面</a>
+
 {% endblock %}

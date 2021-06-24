@@ -1,37 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>picon'</title>
-    <link rel="stylesheet" href="../static/css/style.css">
-    <!-- <link rel="stylesheet" href="../static/css/bootstrap-reboot.txt"> -->
-    <link rel="stylesheet" href="../static/js/Jquery/jquery-ui-1.12.1/jquery-ui.css">
-    <script type="text/javascript" src="../static/js/Jquery/jquery-3.5.1.js"></script>
-    <script type="text/javascript" src="../static/js/Jquery/jquery-ui-1.12.1/jquery-ui.min.js"></script>
-</head>
-<body>
-    <div id="header">
-       ここがヘッダーです
-    </div>
+{% extends 'base.html' %}
+{% block content%}
 
-    <div class="section">
-  
-        <div class="oneArea">
-        <img src="../static/font/moodleRogoWhite.png" alt="Kagawa university">
-        
-        <p>ここがoneAreaです</p>
+        <div class="qrcode_area">
+            <img class="qrcode_img" src="../static/font/QRcd.png" alt="LineQr">
         </div>
-    
-    <div id="main">
-        ここがメインです
+        <div class="lineicon_area">
+            <img class="lineicon_img" src="../static/font/LINEicon.PNG" alt="LineIcon">
+        </div>
+        <div class="linecheck_area">
+            <p id="line_check_comment"></p>
+        </div>
+        <div class="button_area">
+            <!--<img src="" alt="">:+のアイコンを入れる-->
+            <!--<img src="" alt="">:ゴミ箱のアイコンを入れる-->
+            <p class="add_task_comment">＋課題の追加</p>
+        </div>
+        <div class="task_area">
+            <ul id="task_list"></ul>
+        </div>
         
-    </div>
-    <div id="footer">
-        <img src="../static/font/moodleRogoBlack.png" alt="Kagawa universuty">
-    </div>
-    <script type="text/javascript" src="../static/js/variables.js"></script>
-    <script type="text/javascript" src="../static/js/MOVE.js"></script>
-    <script type="text/javascript" src="../static/js/VIEW.js"></script>
-    <script type="text/javascript" src="../static/js/picon.js"></script>
-</body>
-</html>
+{% endblock %}

@@ -1,6 +1,5 @@
-const VIEW = {
-    outputQR: function() {
-        $('#main').html('<img src="../static/font/QRコード.pmg">')
-        
+const JSVIEW = {
+    viewLoginError: function() {
+        $('#login_error_message').html('ログインに失敗しました');
     }
 };
