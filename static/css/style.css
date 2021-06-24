@@ -32,10 +32,13 @@ img {
     
 }
 
-#main img{
-    width:210px;
+.oneArea{
+	background-color: #fff;
+    width:auto;
+	height: 200px;
     text-align: left;
 }
+
 #main{
     background-color: #f4f4f4;
     width: auto;
