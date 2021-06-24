@@ -1,4 +1,5 @@
 $(function(){
+    JSMOVE.moveIndexLogin();
     $(document).on('click', '.add_task_comment', function () {
         $('#task_list').html('<li class="task"><input type="text" class="task_content"></li>')
         
