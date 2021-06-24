@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, request, session, abort, jsonify
+from flask import Flask, render_template, redirect, request, session, abort, jsonify, json
 from linebot import (LineBotApi, WebhookHandler)
 from linebot.exceptions import (InvalidSignatureError)
 from linebot.models import (MessageEvent, TextMessage, TextSendMessage)
@@ -21,37 +21,53 @@ def index():
 
 @app.route("/login")
 def login():
-    return render_template('login.html')
+    if "user_id" in session:
+        return redirect('/')
+    else:
+        return render_template('login.html')
 
 @app.route("/login_member", methods=['POST'])
 def login_member():
-    user_name = request.json['name']
-    password = request.json['pass']
+    user_name = request.form.get('name')
+    password = request.form.get('pass')
     conn = sqlite3.connect('task.db')
     c = conn.cursor()
     c.execute("SELECT user_id FROM user WHERE user_name = ? AND password = ?", (user_name, password))
     user_id = c.fetchone()
     c.close()
     if user_id is None:
-        return jsonify(ResultSet = json.dumps({"result": '0'}))
+        return '0'
     else:
-        session["user_id"] = user_id
-        return jsonify(ResultSet = json.dumps({"result": user_id}))
+        session["user_id"] = str(user_id[0])
+        return str(user_id[0])
 
 @app.route("/entry")
 def entry():
-    return render_template('entry.html')
+    if "user_id" in session:
+        return redirect('/')
+    else:
+        return render_template('entry.html')
 
 @app.route("/entry_member", methods=['POST'])
 def entry_member():
-    user_name = request.form.get("member_name")
-    password = request.form.get("member_pass")
+    user_name = request.form.get("name")
+    password = request.form.get("pass")
     conn = sqlite3.connect('task.db')
     c = conn.cursor()
     c.execute("INSERT into user values (null, ?, ?, 0)", (user_name, password))
     conn.commit()
+    c.execute("SELECT user_id FROM user WHERE user_name = ? AND password = ?", (user_name, password))
+    user_id = c.fetchone()
     c.close()
-    return redirect('/login.html')
+    if user_id is None:
+        return '0'
+    else:
+        return str(user_id[0])
+
+@app.route("/logout")
+def logout():
+    session.pop("user_id")
+    return redirect('/login')
 
 @app.route("/callback", methods=['POST'])
 def callback():
