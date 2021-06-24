@@ -15,7 +15,7 @@
 
 ・QRコード(LINEbotの入り口；背景透過
 →imgタグ：画像出力
-…HTML
+…HTMLmain
 
 ・ログイン機能→LINEbotの一番最初のやりとり
 
