@@ -43,10 +43,9 @@ const JSGET = {
     },
     getUserTask: function() {
         $.ajax({
-            url: '/entry_member',
+            url: '/get_task',
             type: 'POST',
-            data: {name: $('#entry_login_name').val(),
-                   pass: $('#entry_login_pass').val()
+            data: {name: '0',
                   },
             dataType: "json",
             timeout: 30000
