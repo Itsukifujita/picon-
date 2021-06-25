@@ -54,10 +54,11 @@ img {
 .box2 {
 	position:relative;
 	top: 50px;
-	/* width: 500px; */
+	margin:  0 auto; 
+	width: 500px;
 	height: 250px;
     padding: 85px 1em;
-    margin: 0 400px;
+    /* margin: 0 400px; */
     /* font-weight: bold; */
     /* color: #6091d3;文字色 */
     /* background: #FFF; */
@@ -87,7 +88,7 @@ img {
 .login_pass{
 	margin-right: 75px;
 }
-#login_button{
+#login_button #entry_button{
 	margin-top:10px;
 	/* margin-right: 5px;
 	margin-left: 200px; */
