@@ -51,3 +51,56 @@ img {
 }
 
 /* ログイン画面 */
+.box2 {
+	position:relative;
+	top: 50px;
+	/* width: 500px; */
+	height: 250px;
+    padding: 85px 1em;
+    margin: 0 400px;
+    /* font-weight: bold; */
+    /* color: #6091d3;文字色 */
+    /* background: #FFF; */
+    border: solid 3px #75ac2d;/*線*/
+    border-radius: 10px;/*角の丸み*/
+}
+
+.login_title{
+	font-family: 'Courier New', Courier, monospace;
+	color: #656565;
+	padding-top: 0px;
+	font-size: 50px;
+	/* padding-bottom: 10px; */
+}
+
+.login_name, .login_pass, .button, #login_button{
+	color: #656565;
+	text-align: center;
+}
+.login_name, .login_pass{
+	margin: 15px;
+	font-size: 20px;
+}
+.login_name{
+
+}
+.login_pass{
+	margin-right: 75px;
+}
+#login_button{
+	margin-top:10px;
+	/* margin-right: 5px;
+	margin-left: 200px; */
+}
+.button{
+	font-size: small;
+	display: flex;
+  flex-direction: column;
+	/* margin-left: 690px; */
+	margin-top: 10px;
+	align-items: center;
+}
+#login_error_message{
+	color: rgb(204, 0, 0);
+	margin-top: 20px;
+}
