@@ -1,0 +1,1 @@
+const NO_DATA = '0';
