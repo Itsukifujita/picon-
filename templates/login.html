@@ -1,33 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<div class="box2">
     <h1 class="login_title">ログイン</h1>
-    <p class="login_name">名前<input type="text" name="member_name" id="input_login_name" maxlength="10"></p>
-    <p class="login_pass">パスワード<input type="password" name="member_pass" id="input_login_pass" maxlength="30"></p>
+    <p class="login_name">名前<input type="text" name="member_name" id="input_login_name" class="input_text" maxlength="10"></p>
+    <p class="login_pass">パスワード<input type="password" name="member_pass" id="input_login_pass" class="input_text" maxlength="30"></p>
     <input type="submit" name="login"  id="login_button" value="ログイン">
-    <a href="/entry" class="button">新規登録</a>
+    <a href="/entry" class="button">☞新規登録はこちらから</a>
     <div id="login_error_message"></div>
-    <input type="date">
-    <select>
-        <option value="Aries">00</option>
-<option value="Taurus">01</option>
-<option value="Gemini">02</option>
-<option value="Cancer">かに座</option>
-<option value="Leo">しし座</option>
-<option value="Virgo">おとめ座</option>
-<option value="Libra">てんびん座</option>
-<option value="Scorpio">さそり座</option>
-<option value="Saggitarius">いて座</option>
-<option value="Capricorn">やぎ座</option>
-<option value="Aquarius">みずがめ座</option>
-<option value="Pisces">うお座</option>
-    </select>
-    <select>
-        <option value="Aries">00</option>
-<option value="Taurus">15</option>
-<option value="Gemini">30</option>
-<option value="Cancer">45</option>
-    </select>
-
+</div>
 
 {% endblock %}    

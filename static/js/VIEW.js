@@ -40,11 +40,15 @@ const JSVIEW = {
             + `<option value="qua">15</option>`
             + `<option value="hal">30</option>`
             + `<option value="thr">45</option>`
-            + `</select>`    
-    
-        for (let i = 0 ; i < tdate.length ; i ++){
+            + `</select>`;
+        for (let i = 0; i < tdate.length; i++){
             $('#task_list').html('<li class="task"><input type="text" class="task_content"></li>')
         }
-          }
-    
+    },
+    createTask: function() {
+        
+    },
+    createNoTask: function() {
+        
+    }
 };

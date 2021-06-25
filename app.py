@@ -67,8 +67,33 @@ def entry_member():
 
 @app.route("/logout")
 def logout():
-    session.pop("user_id")
+    session.pop("user_id", None)
     return redirect('/login')
+
+@app.route("/get_task", methods=['POST'])
+def get_task():
+    user_id = session["user_id"]
+    conn = sqlite3.connect('task.db')
+    c = conn.cursor()
+    c.execute("SELECT task_id, message, day, time FROM task WHERE user_id = ?", (user_id, ))
+    task_list = ''
+    for result in c.fetchall():
+        task_list += str(result[0]) + ',' + str(result[1]) + ',' + str(result[2]) + ',' + str(result[3]) + '#'
+    c.close()
+    if task_list == '':
+        return '0'
+    else:
+        return task_list
+
+@app.route("/get_lineid", methods=['POST'])
+def get_lineid():
+    user_id = session["user_id"]
+    conn = sqlite3.connect('task.db')
+    c = conn.cursor()
+    c.execute("SELECT line_id FROM user WHERE user_id = ?", (user_id, ))
+    line_id = c.fetchone()
+    c.close()
+    return str(line_id[0])
 
 @app.route("/callback", methods=['POST'])
 def callback():
