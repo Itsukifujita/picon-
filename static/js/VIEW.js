@@ -2,18 +2,19 @@ const JSVIEW = {
     viewLoginError: function() {
         $('#login_error_message').html('ログインに失敗しました');
     },
-    viewTaskdetail: function(){
-        let tdate = ` `
-        tdate += `<li>`
-            + `<input type="number" class="taskid">`
-            + `<input type="text" class="taskdetail>`
-            + `<input type="date" class="taskdate">`
-            + `<select>`
-            + `<option value="rei">00</option>`
-            + `<option value="ich">01</option>`
-            + `<option value="nii">02</option>`
-            + `<option value="san">03</option>`
-            + `<option value="sii">04</option>`
+    createTask: function(res){
+        let html = ``,
+            len = res.length;
+        for (let i = 0; i < len; i++) {
+            html += `<li class="task" data-id="${res[i][0]}">`
+                  +     `<input type="text" name="task_name" class="task_detail">`
+                  +     `<input type="date" class="task_date">`
+                  +     JSVIEW.createSelectDay()
+                  +     `<option value="rei">00</option>`
+               + `<option value="ich">01</option>`
+               + `<option value="nii">02</option>`
+               + `<option value="san">03</option>`
+               + `<option value="sii">04</option>`
             + `<option value="goo">05</option>`
             + `<option value="rok">06</option>`
             + `<option value="sit">07</option>`
@@ -41,14 +42,26 @@ const JSVIEW = {
             + `<option value="hal">30</option>`
             + `<option value="thr">45</option>`
             + `</select>`;
-        for (let i = 0; i < tdate.length; i++){
+        
             $('#task_list').html('<li class="task"><input type="text" class="task_content"></li>')
         }
     },
-    createTask: function() {
+    createNoTask: function() {
         
     },
-    createNoTask: function() {
+    createSelectDay: function() {
+        let html = `<select class="task_select_day">`,
+            array = ['毎日', '毎週月曜日', '毎週火曜日', '毎週水曜日', '毎週木曜日', '毎週金曜日', '毎週土曜日', '毎週日曜日'];
+        for (let i in array) {
+            html += `<option value="${i}">${array[i]}</option>`
+        }
+        html += `</select>`;
+        return html;
+    },
+    createSelectHour: function() {
+        
+    },
+    createSelectMinuites: function() {
         
     }
 };
