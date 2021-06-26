@@ -10,6 +10,8 @@ const JSVIEW = {
                   +     `<input type="text" name="task_name" class="task_detail">`
                   +     `<input type="date" class="task_date">`
                   +     JSVIEW.createSelectDay()
+                  +     JSVIEW.createSelectHour()
+                  +     JSVIEW.createSelectMinuites()
                   +     `<option value="rei">00</option>`
                + `<option value="ich">01</option>`
                + `<option value="nii">02</option>`
@@ -59,9 +61,21 @@ const JSVIEW = {
         return html;
     },
     createSelectHour: function() {
-        
+        let html = `<select class="task_select_hour">`,
+            array = ['00', '01', '02', '03','04', '05', '06', '07','08', '09', '10', '11','12', '13', '14', '15','16', '17', '18', '19','20', '21', '22', '23','24']
+        for (let i in array) {
+            html += `<option value="${i}">${array[i]}</option>`
+        }
+        html += `</selected>`;
+        return html;    
     },
     createSelectMinuites: function() {
-        
+        let html = `<select class="task_select_minutes">`,
+            array = ['00', '15', '30', '45']
+        for (let i in array) {
+            html += `<option value="${i}">${array[i]}</option>`
+        }
+        html += `</selected>`;
+        return html; 
     }
 };
