@@ -9,9 +9,9 @@ const JSVIEW = {
             html += `<li class="task" data-id="${res[i][0]}">`
                   +     `<input type="text" name="task_name" class="task_detail" value="${res[i][1]}">`
                   +     `<input type="date" class="task_date">`
-                  +     JSVIEW.createSelectDay()
-                  +     JSVIEW.createSelectHour()
-                  +     JSVIEW.createSelectMinuites()
+                  +     JSVIEW.createSelectDay(res[i][2])
+                  +     JSVIEW.createSelectHour(res[i][3])
+                  +     JSVIEW.createSelectMinuites(res[i][3])
                   + `</li>`;
         }
         $('#task_list').html(html);
