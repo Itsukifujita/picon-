@@ -23,15 +23,27 @@ const JSVIEW = {
         let html = `<select class="task_select_day">`,
             array = ['毎日', '毎週月曜日', '毎週火曜日', '毎週水曜日', '毎週木曜日', '毎週金曜日', '毎週土曜日', '毎週日曜日'];
         for (let i in array) {
-            html += `<option value="${i}">${array[i]}</option>`
+            html += `<option value="${i}">${array[i]}</option>`;
         }
         html += `</select>`;
         return html;
     },
     createSelectHour: function(time) {
-        
+        let html = `<select class="task_select_hour">`,
+            array = ['00', '01', '02', '03','04', '05', '06', '07','08', '09', '10', '11','12', '13', '14', '15','16', '17', '18', '19','20', '21', '22', '23','24'];
+        for (let i in array) {
+            html += `<option value="${i}">${array[i]}</option>`;
+        }
+        html += `</selected>`;
+        return html;
     },
     createSelectMinuites: function(time) {
-        
+        let html = `<select class="task_select_minutes">`,
+            array = ['00', '15', '30', '45'];
+        for (let i in array) {
+            html += `<option value="${i}">${array[i]}</option>`;
+        }
+        html += `</selected>`;
+        return html; 
     }
 };
