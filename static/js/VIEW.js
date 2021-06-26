@@ -2,19 +2,22 @@ const JSVIEW = {
     viewLoginError: function() {
         $('#login_error_message').html('ログインに失敗しました');
     },
-    createTask: function(res){
+    createTask: function(res) {
         let html = ``,
-            len = res.length;
+            len = res.length,
+            date;
         for (let i = 0; i < len; i++) {
-            html += `<li class="task" data-id="${res[i][0]}">`
-                  +     `<input type="text" name="task_name" class="task_detail" value="${res[i][1]}">`
-                  +     `<input type="date" class="task_date">`
-                  +     JSVIEW.createSelectDay(res[i][2])
-                  +     JSVIEW.createSelectHour(res[i][3])
-                  +     JSVIEW.createSelectMinuites(res[i][3])
+            date = JSMOVE.moveJudgmentDate(res[i][3]);
+            html += `<li class="task" data-id="${res[i][0]}" data-sort="${res[i][1]}">`
+                  +     `<input type="text" class="task_detail" value="${res[i][2]}">`
+                  +     `<input type="date" class="task_date" value="${date}">`
+                  +     JSVIEW.createSelectDay(res[i][3])
+                  +     JSVIEW.createSelectHour(res[i][4])
+                  +     JSVIEW.createSelectMinuites(res[i][4])
                   + `</li>`;
         }
         $('#task_list').html(html);
+        JSMOVE.moveSorttable();
     },
     createNoTask: function() {
         

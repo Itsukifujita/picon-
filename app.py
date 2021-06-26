@@ -75,10 +75,10 @@ def get_task():
     user_id = session["user_id"]
     conn = sqlite3.connect('task.db')
     c = conn.cursor()
-    c.execute("SELECT task_id, message, day, time FROM task WHERE user_id = ?", (user_id, ))
+    c.execute("SELECT task_id, sort_id, message, day, time FROM task WHERE user_id = ?", (user_id, ))
     task_list = ''
     for result in c.fetchall():
-        task_list += str(result[0]) + ',' + str(result[1]) + ',' + str(result[2]) + ',' + str(result[3]) + '#'
+        task_list += str(result[0]) + ',' + str(result[1]) + ',' + str(result[2]) + ',' + str(result[3]) + ',' + str(result[4]) + '#'
     c.close()
     if task_list == '':
         return '0'
