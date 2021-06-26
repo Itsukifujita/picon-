@@ -38,5 +38,26 @@ const JSMOVE = {
             }
             result = task_list;
         }
+    },
+    moveConvertDate: function(beforeDate, format = 'YYYY年M月D日') {
+        const func = {
+            _padding: function (str) {
+                return ('0' + str).slice(-2);
+            }
+        },
+        date = new Date(beforeDate);
+        format = format.replace(/YYYY/g, date.getFullYear());
+        format = format.replace(/YY/g, func._padding(date.getFullYear()));
+        format = format.replace(/MM/g, func._padding((date.getMonth() + 1)));
+        format = format.replace(/M/g, (date.getMonth() + 1));
+        format = format.replace(/DD/g, func._padding(date.getDate()));
+        format = format.replace(/D/g, date.getDate());
+        format = format.replace(/hh/g, func._padding(date.getHours()));
+        format = format.replace(/h/g, date.getHours());
+        format = format.replace(/mm/g, func._padding(date.getMinutes()));
+        format = format.replace(/m/g, date.getMinutes());
+        format = format.replace(/ss/g, func._padding(date.getSeconds()));
+        format = format.replace(/s/g, date.getSeconds());
+        return format;
     }
 };
