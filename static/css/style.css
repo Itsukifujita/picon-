@@ -105,3 +105,8 @@ img {
 	color: rgb(204, 0, 0);
 	margin-top: 20px;
 }
+.task{
+	border: solid 2px #656565;
+	border-radius: 3px;
+	margin-bottom: 20px;
+}

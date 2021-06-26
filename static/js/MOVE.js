@@ -39,6 +39,23 @@ const JSMOVE = {
             result = task_list;
         }
     },
+    moveJudgmentDate: function(date) {
+        switch (date) {
+            case DAY.EVERY:
+            case DAY.MON:
+            case DAY.TUE:
+            case DAY.WED:
+            case DAY.THU:
+            case DAY.FRI:
+            case DAY.SAT:
+            case DAY.SUN:
+                return JSMOVE.moveConvertDate(new Date(), 'YYYY-MM-DD');
+                break;
+            default:
+                return JSMOVE.moveConvertDate(date, 'YYYY-MM-DD');
+                break;
+        }
+    },
     moveConvertDate: function(beforeDate, format = 'YYYY年M月D日') {
         const func = {
             _padding: function (str) {
@@ -59,5 +76,27 @@ const JSMOVE = {
         format = format.replace(/ss/g, func._padding(date.getSeconds()));
         format = format.replace(/s/g, date.getSeconds());
         return format;
+    },
+    moveSorttable: function() {
+        $('#task_list').sortable({
+            placeholder: 'ui-placeholder',
+            cursor: 'move',
+            start: function (e, ui) {
+                $(ui.helper).addClass('ui-boxshadow');
+                //$('.ui-sortable-handle').removeClass('sort-target');
+            },
+            stop: function (e, ui) {
+                $(ui.item).removeClass('ui-boxshadow');
+                //$(ui.item).addClass('sort-target');
+                JSMOVE.moveSortTask();
+            }
+        });
+    },
+    moveSortTask: function() {
+        let list = $('#task_list').children(),
+            len = list.length;
+        for (let i = 0; i < len; i++) {
+            list[i].setAttribute('data-sort', String(i + 1));
+        }
     }
 };
