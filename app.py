@@ -14,7 +14,6 @@ handler = WebhookHandler(SECRET)
 
 @app.route("/")
 def index():
-    line_bot_api.push_message("U77fb", TextSendMessage(text=f"www"))
     if "user_id" in session:
         user_id = session["user_id"][0]
         return render_template('index.html')
@@ -124,10 +123,10 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     profile = line_bot_api.get_profile(event.source.user_id)
-    line_id = str(profile.user_id[:5])
+    line_id = profile.user_id[:5]
 #    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=str(event.message.text)))
-#    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=str(line_id)))
-    line_bot_api.push_message(line_id, TextSendMessage(text="www"))
+    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=type(line_id)))
+#    line_bot_api.push_message(line_id, TextSendMessage(text="www"))
 
 if __name__ == "__main__":
     app.run()
