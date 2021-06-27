@@ -95,6 +95,20 @@ def get_lineid():
     c.close()
     return str(line_id[0])
 
+@app.route("/update_sortid", methods=['POST'])
+def update_sortid():
+    taskid_list = request.form.get("taskid")
+    sortid_list = request.form.get("sortid")
+    num = request.form.get("num")
+    conn = sqlite3.connect('task.db')
+    c = conn.cursor()
+    for i in range(int(num)):
+        c.execute("UPDATE task set sort_id = ? WHERE task_id = ?", (sortid_list[i], taskid_list[i]))
+
+    conn.commit()
+    c.close()
+    return 'OK'
+
 @app.route("/callback", methods=['POST'])
 def callback():
     signature = request.headers['X-Line-Signature']
@@ -108,7 +122,28 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=event.message.text))
+    user_info = event.message.text.sprit(',')
+    conn = sqlite3.connect('task.db')
+    c = conn.cursor()
+    c.execute("SELECT user_id FROM user WHERE line_id = ?", (event.reply_token, ))
+    user_id = c.fetchone()
+#    if user_id is None:
+#        
+#    else:
+    if (len(user_info) == 2):
+        conn = sqlite3.connect('task.db')
+        c = conn.cursor()
+        c.execute("SELECT user_id FROM user WHERE user_name = ? AND password = ?", (user_info[0], user_info[1]))
+        user_id = c.fetchone()
+        if user_id is None:
+            line_bot_api.reply_message(event.reply_token, TextSendMessage('ユーザ名とパスワードが違います'))
+        else:
+            c.execute("UPDATE user set line_id = ? WHERE user_id = 1", (event.reply_token, ))
+            conn.commit()
+            c.close()
+            line_bot_api.reply_message(event.reply_token, TextSendMessage('ラインアカウントの連携完了'))
+    else:
+        line_bot_api.reply_message(event.reply_token, TextSendMessage('ユーザ名とパスワードが違います'))
 
 if __name__ == "__main__":
     app.run()

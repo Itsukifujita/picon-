@@ -83,12 +83,11 @@ const JSMOVE = {
             cursor: 'move',
             start: function (e, ui) {
                 $(ui.helper).addClass('ui-boxshadow');
-                //$('.ui-sortable-handle').removeClass('sort-target');
             },
             stop: function (e, ui) {
                 $(ui.item).removeClass('ui-boxshadow');
-                //$(ui.item).addClass('sort-target');
                 JSMOVE.moveSortTask();
+                JSGET.updateSortId();
             }
         });
     },
