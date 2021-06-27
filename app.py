@@ -123,8 +123,10 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     profile = line_bot_api.get_profile(event.source.user_id)
-    mes = str(event.message.text) + str(profile.user_id[:5])
-    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=mes))
+    line_id = str(profile.user_id[:5])
+    messages = "www"
+    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=str(event.message.text)))
+    line_bot_api.push_message(line_id, messages=messages)
 
 if __name__ == "__main__":
     app.run()
