@@ -129,8 +129,6 @@ def handle_message(event):
     c.execute("SELECT user_id FROM user WHERE line_id = ?", (line_id, ))
     user_id = c.fetchone()
     if user_id is None:
-        mes = profile.display_name + "さんは連携が完了しています。"
-    else:
         user_info = str(event.message.text).split(',')
         l = len(user_info)
         if l == 2:
@@ -144,6 +142,8 @@ def handle_message(event):
                 mes = profile.display_name + "さん、連携が完了しました。"
         else:
             mes = "名前またはパスワードが間違っています"
+    else:
+        mes = profile.display_name + "さんは連携が完了しています。"
 
     c.close()
     line_bot_api.push_message(line_id, TextSendMessage(text=mes))
