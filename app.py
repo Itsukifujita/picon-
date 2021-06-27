@@ -124,13 +124,29 @@ def callback():
 def handle_message(event):
     profile = line_bot_api.get_profile(event.source.user_id)
     line_id = profile.user_id
-#    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=str(event.message.text)))
-#    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=line_id))
-    line_bot_api.push_message(line_id, TextSendMessage(text="www"))
-    line_bot_api.push_message(line_id, TextSendMessage(text="wwwww"))
-    line_bot_api.push_message(line_id, TextSendMessage(text="wwwwwww"))
-    line_bot_api.push_message(line_id, TextSendMessage(text="wwwww"))
-    line_bot_api.push_message(line_id, TextSendMessage(text="www"))
+    conn = sqlite3.connect('task.db')
+    c = conn.cursor()
+    c.execute("SELECT user_id FROM user WHERE line_id = ?", (line_id, ))
+    user_id = c.fetchone()
+    if user_id is None:
+        mes = profile.display_name + "さんは連携が完了しています。"
+    else:
+        user_info = str(event.message.text).split(',')
+        l = len(user_info)
+        if l == 2:
+            c.execute("SELECT user_id FROM user WHERE user_name = ? AND password = ?", (user_info[0], user_info[1]))
+            user_id = c.fetchone()
+            if user_id is None:
+                mes = "名前またはパスワードが間違っています"
+            else:
+                c.execute("UPDATE user set line_id = ? WHERE user_id = ?", (line_id, user_id))
+                conn.commit()
+                mes = profile.display_name + "さん、連携が完了しました。"
+        else:
+            mes = "名前またはパスワードが間違っています"
+
+    c.close()
+    line_bot_api.push_message(line_id, TextSendMessage(text=mes))
 
 if __name__ == "__main__":
     app.run()
