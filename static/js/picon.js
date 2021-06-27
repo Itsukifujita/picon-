@@ -20,7 +20,10 @@ $(function(){
         
     });
     $(document).on('blur', '.input_text', function () {
-        let text = $(this).val().replace(/ /g, '');
+        let t = $(this).val().replace(/ /g, ''),
+            te = t.replace(/　/g, ''),
+            tex = te.replace(/,/g, ''),
+            text = tex.replace(/、/g, '');
         $(this).val(text);
     });
 });
