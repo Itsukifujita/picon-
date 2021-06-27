@@ -126,7 +126,7 @@ def handle_message(event):
     line_id = str(profile.user_id[:5])
     messages = "www"
     line_bot_api.reply_message(event.reply_token, TextSendMessage(text=str(event.message.text)))
-    line_bot_api.push_message(line_id, messages=messages)
+    line_bot_api.push_message(line_id, TextSendMessage(text=messages))
 
 if __name__ == "__main__":
     app.run()
