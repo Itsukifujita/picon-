@@ -137,10 +137,9 @@ def handle_message(event):
             if user_id is None:
                 mes = "名前またはパスワードが間違っています"
             else:
-#                c.execute("UPDATE user set line_id = ? WHERE user_id = ?", (line_id, user_id))
-#                conn.commit()
-#                mes = profile.display_name + "さん、連携が完了しました。"
-                mes = profile.display_name + str(user_id[0])
+                c.execute("UPDATE user set line_id = ? WHERE user_id = ?", (line_id, user_id[0]))
+                conn.commit()
+                mes = profile.display_name + "さん、連携が完了しました。"
         else:
             mes = "名前、パスワード\nの形式で入力してください"
     else:
