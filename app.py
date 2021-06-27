@@ -125,7 +125,7 @@ def handle_message(event):
     profile = line_bot_api.get_profile(event.source.user_id)
     line_id = profile.user_id
 #    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=str(event.message.text)))
-    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=line_id)))
+    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=line_id))
 #    line_bot_api.push_message(line_id, TextSendMessage(text="www"))
 
 if __name__ == "__main__":
