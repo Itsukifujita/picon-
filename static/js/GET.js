@@ -65,7 +65,7 @@ const JSGET = {
             type: 'POST',
             data: {data: NO_DATA,
                   },
-            dataType: "json",
+            dataType: "text",
             timeout: 30000
         }).done(function (res) {
             if (String(res) === NO_DATA) {
