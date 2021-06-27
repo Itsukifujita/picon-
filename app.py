@@ -122,28 +122,43 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    user_info = event.message.text.sprit(',')
-#    conn = sqlite3.connect('task.db')
-#    c = conn.cursor()
-#    c.execute("SELECT user_id FROM user WHERE line_id = ?", (event.reply_token, ))
-#    user_id = c.fetchone()
-#    if user_id is None:
-#        
-#    else:
-    if (len(user_info) == 2):
-        conn = sqlite3.connect('task.db')
-        c = conn.cursor()
-        c.execute("SELECT user_id FROM user WHERE user_name = ? AND password = ?", (user_info[0], user_info[1]))
-        user_id = c.fetchone()
-        if user_id is None:
-            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=f'ユーザ名とパスワードが違います'))
-        else:
-            c.execute("UPDATE user set line_id = ? WHERE user_id = 1", (event.reply_token, ))
-            conn.commit()
-            c.close()
-            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=f'ラインアカウントの連携完了'))
-    else:
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=f'ユーザ名とパスワードが違います'))
+    # user_info = event.message.text.sprit(',')
+    # conn = sqlite3.connect('task.db')
+    # c = conn.cursor()
+    # c.execute("SELECT user_id FROM user WHERE line_id = ?", (event.reply_token, ))
+    # user_id = c.fetchone()
+    # if user_id is None:
+        
+    # else:
+    # if (len(user_info) == 2):
+    #     conn = sqlite3.connect('task.db')
+    #     c = conn.cursor()
+    #     c.execute("SELECT user_id FROM user WHERE user_name = ? AND password = ?", (user_info[0], user_info[1]))
+    #     user_id = c.fetchone()
+    #     if user_id is None:
+    #         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=f'ユーザ名とパスワードが違います'))
+    #     else:
+    #         c.execute("UPDATE user set line_id = ? WHERE user_id = 1", (event.reply_token, ))
+    #         conn.commit()
+    #         c.close()
+    #         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=f'ラインアカウントの連携完了'))
+    # else:
+    #     line_bot_api.reply_message(event.reply_token, TextSendMessage(text=f'ユーザ名とパスワードが違います'))
+    
+    profile = line_bot_api.get_profile(event.source.user_id)
+    status_msg = profile.status_message
+    if status_msg != "None":
+        # LINEに登録されているstatus_messageが空の場合は、"なし"という文字列を代わりの値とする
+        status_msg = "なし"
+
+    messages = TemplateSendMessage(alt_text="Buttons template", template=ButtonsTemplate(
+                                    thumbnail_image_url=profile.picture_url,
+                                    title=profile.display_name,
+                                    text=f"User Id: {profile.user_id[:5]}...\n"
+                                    f"Status Message: {status_msg}",
+                                    actions=[MessageAction(label="成功", text="次は何を実装しましょうか？")]))
+
+    line_bot_api.reply_message(event.reply_token, messages=messages)
 
 if __name__ == "__main__":
     app.run()
