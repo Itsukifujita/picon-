@@ -141,7 +141,7 @@ def handle_message(event):
                 conn.commit()
                 mes = profile.display_name + "さん、連携が完了しました。"
         else:
-            mes = "名前またはパスワードが間違っています"
+            mes = "名前、パスワード\nの形式で入力してください"
     else:
         mes = profile.display_name + "さんは連携が完了しています。"
 
