@@ -14,6 +14,7 @@ handler = WebhookHandler(SECRET)
 
 @app.route("/")
 def index():
+    line_bot_api.push_message("U77fb", TextSendMessage(text=f"www"))
     if "user_id" in session:
         user_id = session["user_id"][0]
         return render_template('index.html')
