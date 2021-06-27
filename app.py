@@ -129,7 +129,7 @@ def handle_message(event):
     c.execute("SELECT user_id FROM user WHERE line_id = ?", (line_id, ))
     user_id = c.fetchone()
     if user_id is None:
-        user_info = str(event.message.text).split(',')
+        user_info = str(event.message.text).split('、')
         l = len(user_info)
         if l == 2:
             c.execute("SELECT user_id FROM user WHERE user_name = ? AND password = ?", (user_info[0], user_info[1]))
