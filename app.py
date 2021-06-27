@@ -136,14 +136,14 @@ def handle_message(event):
         c.execute("SELECT user_id FROM user WHERE user_name = ? AND password = ?", (user_info[0], user_info[1]))
         user_id = c.fetchone()
         if user_id is None:
-            line_bot_api.reply_message(event.reply_token, TextSendMessage('ユーザ名とパスワードが違います'))
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=f'ユーザ名とパスワードが違います'))
         else:
             c.execute("UPDATE user set line_id = ? WHERE user_id = 1", (event.reply_token, ))
             conn.commit()
             c.close()
-            line_bot_api.reply_message(event.reply_token, TextSendMessage('ラインアカウントの連携完了'))
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=f'ラインアカウントの連携完了'))
     else:
-        line_bot_api.reply_message(event.reply_token, TextSendMessage('ユーザ名とパスワードが違います'))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=f'ユーザ名とパスワードが違います'))
 
 if __name__ == "__main__":
     app.run()
