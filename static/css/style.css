@@ -105,8 +105,32 @@ img {
 	color: rgb(204, 0, 0);
 	margin-top: 20px;
 }
-.task{
-	border: solid 2px #656565;
-	border-radius: 3px;
-	margin-bottom: 20px;
+/* タスクの並び替え部分 ここから*/
+#task_list{
+	margin: 0 auto;
+	width: 700px;
+	border: 2px solid #656565;
 }
+.task{
+	margin: 5px;
+	height: 50px;
+	overflow-y: scroll;
+	border: 1px solid #656565;
+	border-radius: 3px;
+}
+.task:hover{
+	cursor: grab;
+}
+.task:active{
+	cursor: grabbing !important;
+}
+.ui-placeholder{
+	margin: 5px;
+	height: 50px;
+	background-color: whitesmoke;
+	border: dotted 1px #656565;
+}
+.ui-boxshadow {
+	box-shadow: 10px 10px 10px rgba(0,0,0,0.4);
+}
+/* タスクの並び替え部分 ここまで */
