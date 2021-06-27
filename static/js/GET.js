@@ -65,7 +65,7 @@ const JSGET = {
             type: 'POST',
             data: {data: NO_DATA,
                   },
-            dataType: "json",
+            dataType: "text",
             timeout: 30000
         }).done(function (res) {
             if (String(res) === NO_DATA) {
@@ -73,8 +73,7 @@ const JSGET = {
                       + `<p class="line_nologin_comment">QRコードからお友達登録してください</p>`;
             } else {
                 html += `<p class="line_login_comment">友達登録ありがとうございます</p>`
-                      + `<p class="line_login_comment">時間がきたらpicon'からメッセージが届きます</p>`
-                      + `<p>line_id: ${res}</p>`;
+                      + `<p class="line_login_comment">時間がきたらpicon'からメッセージが届きます</p>`;
             }
             $('#line_check_comment').html(html)
         }).fail(function (jqXHR, textStatus, errorThrown) {

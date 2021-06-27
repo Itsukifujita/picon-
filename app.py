@@ -122,28 +122,31 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    user_info = event.message.text.sprit(',')
+    profile = line_bot_api.get_profile(event.source.user_id)
+    line_id = profile.user_id
     conn = sqlite3.connect('task.db')
     c = conn.cursor()
-    c.execute("SELECT user_id FROM user WHERE line_id = ?", (event.reply_token, ))
+    c.execute("SELECT user_id FROM user WHERE line_id = ?", (line_id, ))
     user_id = c.fetchone()
-#    if user_id is None:
-#        
-#    else:
-    if (len(user_info) == 2):
-        conn = sqlite3.connect('task.db')
-        c = conn.cursor()
-        c.execute("SELECT user_id FROM user WHERE user_name = ? AND password = ?", (user_info[0], user_info[1]))
-        user_id = c.fetchone()
-        if user_id is None:
-            line_bot_api.reply_message(event.reply_token, TextSendMessage('ユーザ名とパスワードが違います'))
+    if user_id is None:
+        user_info = str(event.message.text).split('、')
+        l = len(user_info)
+        if l == 2:
+            c.execute("SELECT user_id FROM user WHERE user_name = ? AND password = ?", (user_info[0], user_info[1]))
+            user_id = c.fetchone()
+            if user_id is None:
+                mes = "名前またはパスワードが間違っています"
+            else:
+                c.execute("UPDATE user set line_id = ? WHERE user_id = ?", (line_id, user_id[0]))
+                conn.commit()
+                mes = profile.display_name + "さん、連携が完了しました。"
         else:
-            c.execute("UPDATE user set line_id = ? WHERE user_id = 1", (event.reply_token, ))
-            conn.commit()
-            c.close()
-            line_bot_api.reply_message(event.reply_token, TextSendMessage('ラインアカウントの連携完了'))
+            mes = "名前、パスワード\nの形式で入力してください"
     else:
-        line_bot_api.reply_message(event.reply_token, TextSendMessage('ユーザ名とパスワードが違います'))
+        mes = profile.display_name + "さんは連携が完了しています。"
+
+    c.close()
+    line_bot_api.push_message(line_id, TextSendMessage(text=mes))
 
 if __name__ == "__main__":
     app.run()
