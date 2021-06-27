@@ -123,10 +123,10 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     user_info = event.message.text.sprit(',')
-    conn = sqlite3.connect('task.db')
-    c = conn.cursor()
-    c.execute("SELECT user_id FROM user WHERE line_id = ?", (event.reply_token, ))
-    user_id = c.fetchone()
+#    conn = sqlite3.connect('task.db')
+#    c = conn.cursor()
+#    c.execute("SELECT user_id FROM user WHERE line_id = ?", (event.reply_token, ))
+#    user_id = c.fetchone()
 #    if user_id is None:
 #        
 #    else:
