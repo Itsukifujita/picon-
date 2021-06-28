@@ -82,6 +82,31 @@ const JSGET = {
             console.log(errorThrown);
         });
     },
+    insertNewTask: function(sort_id) {
+        let day = JSMOVE.moveConvertDate(new Date(), 'YYYY-MM-DD'),
+            array;
+        $.ajax({
+            url: '/insert_newtask',
+            type: 'POST',
+            data: {day: day,
+                   sortid: sort_id
+                  },
+            dataType: "text",
+            timeout: 30000
+        }).done(function (res) {
+            console.log(res);
+            if (res === NO_DATA) {
+                $("#index_error").html('タスクの追加失敗');
+            } else {
+                array = res.split(',');
+                JSVIEW.addTask(array);
+            }
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR.status);
+            console.log(textStatus);
+            console.log(errorThrown);
+        });
+    },
     updateSortId: function() {
         let list = $('#task_list').children(),
             len = list.length,
@@ -94,11 +119,11 @@ const JSGET = {
         $.ajax({
             url: '/update_sortid',
             type: 'POST',
-            data: {taskid: taskid_list,
-                   sortid: sortid_list,
+            data: {taskid: taskid_list.join('-'),
+                   sortid: sortid_list.join('-'),
                    num: len
                   },
-            dataType: "json",
+            dataType: "text",
             timeout: 30000
         }).done(function (res) {
             
@@ -108,4 +133,38 @@ const JSGET = {
             console.log(errorThrown);
         });
     },
+    updateDay: function(task_id, day) {
+        $.ajax({
+            url: '/update_day',
+            type: 'POST',
+            data: {taskid: task_id,
+                   day: day
+                  },
+            dataType: "text",
+            timeout: 30000
+        }).done(function (res) {
+            
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR.status);
+            console.log(textStatus);
+            console.log(errorThrown);
+        });
+    },
+    updateMessage: function(task_id, message) {
+        $.ajax({
+            url: '/update_message',
+            type: 'POST',
+            data: {taskid: task_id,
+                   message: message
+                  },
+            dataType: "text",
+            timeout: 30000
+        }).done(function (res) {
+            
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR.status);
+            console.log(textStatus);
+            console.log(errorThrown);
+        });
+    }
 }

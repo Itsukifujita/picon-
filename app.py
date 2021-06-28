@@ -75,7 +75,7 @@ def get_task():
     user_id = session["user_id"]
     conn = sqlite3.connect('task.db')
     c = conn.cursor()
-    c.execute("SELECT task_id, sort_id, message, day, time FROM task WHERE user_id = ?", (user_id, ))
+    c.execute("SELECT task_id, sort_id, message, day, time FROM task WHERE user_id = ? order by sort_id asc", (user_id, ))
     task_list = ''
     for result in c.fetchall():
         task_list += str(result[0]) + ',' + str(result[1]) + ',' + str(result[2]) + ',' + str(result[3]) + ',' + str(result[4]) + '#'
@@ -95,16 +95,57 @@ def get_lineid():
     c.close()
     return str(line_id[0])
 
+@app.route("/insert_newtask", methods=['POST'])
+def insert_newtask():
+    day = request.form.get("day")
+    sortid = request.form.get("sortid")
+    userid = session["user_id"]
+    message = ''
+    time = '00:00'
+    conn = sqlite3.connect('task.db')
+    c = conn.cursor()
+    c.execute("INSERT into task values (null, ?, ?, ?, ?, ?)", (userid, sortid, message, day, time))
+    conn.commit()
+    c.execute("SELECT task_id, sort_id, message, day, time FROM task WHERE user_id = ? order by sort_id desc", (userid, ))
+    result = c.fetchone()
+    c.close()
+    if result is None:
+        return '0'
+    else:
+        return str(result[0]) + ',' + str(result[1]) + ',' + str(result[2]) + ',' + str(result[3]) + ',' + str(result[4])
+
 @app.route("/update_sortid", methods=['POST'])
 def update_sortid():
-    taskid_list = request.form.get("taskid")
-    sortid_list = request.form.get("sortid")
+    taskid_list = request.form.get("taskid").split('-')
+    sortid_list = request.form.get("sortid").split('-')
     num = request.form.get("num")
     conn = sqlite3.connect('task.db')
     c = conn.cursor()
     for i in range(int(num)):
         c.execute("UPDATE task set sort_id = ? WHERE task_id = ?", (sortid_list[i], taskid_list[i]))
+        conn.commit()
 
+    c.close()
+    return 'OK'
+
+@app.route("/update_day", methods=['POST'])
+def update_day():
+    task_id = request.form.get("taskid")
+    day = request.form.get("day")
+    conn = sqlite3.connect('task.db')
+    c = conn.cursor()
+    c.execute("UPDATE task set day = ? WHERE task_id = ?", (day, task_id))
+    conn.commit()
+    c.close()
+    return 'OK'
+
+@app.route("/update_message", methods=['POST'])
+def update_message():
+    task_id = request.form.get("taskid")
+    message = request.form.get("message")
+    conn = sqlite3.connect('task.db')
+    c = conn.cursor()
+    c.execute("UPDATE task set message = ? WHERE task_id = ?", (message, task_id))
     conn.commit()
     c.close()
     return 'OK'
