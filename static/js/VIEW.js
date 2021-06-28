@@ -20,7 +20,10 @@ const JSVIEW = {
         JSMOVE.moveSorttable();
     },
     createNoTask: function() {
-        
+        let html = `<li class="no_task">`
+                 +     `<div class="no_task_comment">予定を追加してください</div>`
+                 + `</li>`;
+        $('#task_list').html(html);
     },
     createSelectDay: function(day) {
         let html = `<select class="task_select_day">`,
@@ -60,9 +63,14 @@ const JSVIEW = {
             } else {
                 html += `<option value="${i}">${array[i]}</option>`;
             }
-            
         }
         html += `</select>`;
         return html; 
+    },
+    addTask: function() {
+        
+    },
+    removeTask: function() {
+        
     }
 };

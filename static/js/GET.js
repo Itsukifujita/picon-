@@ -89,7 +89,7 @@ const JSGET = {
             sortid_list = [];
         for (let i = 0; i < len; i++) {
             taskid_list.push(list[i].getAttribute('data-id'));
-            sortid_list.push(list[i].getAttribute('data-sort'))
+            sortid_list.push(list[i].getAttribute('data-sort'));
         }
         $.ajax({
             url: '/update_sortid',
