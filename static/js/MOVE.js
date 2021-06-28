@@ -77,6 +77,31 @@ const JSMOVE = {
         format = format.replace(/s/g, date.getSeconds());
         return format;
     },
+    moveHideDayContent: function(task_id, day) {
+        let target_list = $('.task'),
+            len = target_list.length,
+            target;
+        for (let i = 0; i < len; i++) {
+            if (task_id === target_list[i].getAttribute('data-id')) {
+                target = target_list[i];
+            }
+        }
+        switch (day) {
+            case DAY.EVERY:
+            case DAY.MON:
+            case DAY.TUE:
+            case DAY.WED:
+            case DAY.THU:
+            case DAY.FRI:
+            case DAY.SAT:
+            case DAY.SUN:
+                target.children[2].style.display = "none";
+                break;
+            default:
+                target.children[3].style.display = "none";
+                break;
+        }
+    },
     moveSorttable: function() {
         $('#task_list').sortable({
             placeholder: 'ui-placeholder',
