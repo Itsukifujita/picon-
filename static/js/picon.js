@@ -25,8 +25,8 @@ $(function(){
         console.log(no_task);
         JSVIEW.addTask();
     });
-    $(document).on('change', '#i', function () {
-        
+    $(document).on('click', '.chenge_day', function () {
+        //日にち指定切替
     });
 });
 
