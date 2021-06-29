@@ -47,8 +47,8 @@ body {
 }
 
 .oneArea img{
-	height: 70px;
-	margin-top: 10px;
+	height: 65px;
+	margin-top: 7px;
 }
 
 #main{
@@ -59,11 +59,11 @@ body {
 
 
 #footer{
-    background-color:#656565 ;
-	position:absolute;
+    background-color:#2d2d2d ;
+	position:relative;
     bottom:0;
-	width: auto;
-	height: 100px;
+	width: -webkit-fill-available;
+	height: 55px;
 }
 
 /* ログイン画面 */
@@ -116,6 +116,9 @@ body {
 	/* margin-left: 690px; */
 	margin-top: 10px;
 	align-items: center;
+	position: absolute;
+    top: 800px;
+    left: 500px;
 }
 #login_error_message{
 	color: rgb(204, 0, 0);
@@ -130,7 +133,7 @@ body {
 	/* position: relative;
 	left: 0px; */
 	position: absolute;
-	top: -50px;
+	top: -60px;
 	left: 56px;
 	margin: 0 auto;
 	width: 700px;
@@ -173,12 +176,10 @@ body {
 /* タスクの並び替え部分 ここまで */
 
 /* タスクのcss */
-/* .task_area{
-	position: relative;
-	top: 0;
-	left: 30px;
-	height: 100px;
-} */
+#line_check_comment{
+	font-size: small;
+    margin-top: 8px;
+}
 
 /* アイコン */
 .lineicon_img{
@@ -203,17 +204,29 @@ body {
 /* QR */
 .qrcode_area{
 	color: #656565;
-	background-color: #fff;
+	background-color: #f4f4f4;
 	width: 300px;
 	height: inherit;
 	float: right;	
 	padding-top: inherit;
+	padding-left: 10px;
+	border-left: 3px solid #fff;
 }
 .qrcode_img{
-	width: 100px;
+	width: 130px;
 	height: auto;
-}
+	margin-top: 10px;
 
+}
+#qr_title{
+	color: #ff5200;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: large;
+	margin-top: 10px;
+	font-weight: 400;
+	border-bottom: gray;
+    padding: 15px;
+}
 /* ゴミ箱 */
 .trash{
 	width: 100px;
@@ -224,6 +237,9 @@ body {
 }
 
 /* plus */
+.button_area{
+	margin-bottom: 0;
+}
 .plus{
 	width: 30px;
 	height: 30px;
@@ -234,5 +250,5 @@ body {
 	font-family: Arial, Helvetica, sans-serif;
 	position: absolute;
 	left: 55px;
-	top: 300px;
+	top: 255px;
 }
