@@ -166,5 +166,22 @@ const JSGET = {
             console.log(textStatus);
             console.log(errorThrown);
         });
+    },
+    updateTime: function(task_id, time) {
+        $.ajax({
+            url: '/update_time',
+            type: 'POST',
+            data: {taskid: task_id,
+                   time: time
+                  },
+            dataType: "text",
+            timeout: 30000
+        }).done(function (res) {
+            
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR.status);
+            console.log(textStatus);
+            console.log(errorThrown);
+        });
     }
 }

@@ -3,6 +3,7 @@ from linebot import (LineBotApi, WebhookHandler)
 from linebot.exceptions import (InvalidSignatureError)
 from linebot.models import (MessageEvent, TextMessage, TextSendMessage)
 import sqlite3
+import datetime
 app = Flask(__name__)
 app.secret_key = "picon"
 
@@ -149,6 +150,49 @@ def update_message():
     conn.commit()
     c.close()
     return 'OK'
+
+@app.route("/update_time", methods=['POST'])
+def update_time():
+    task_id = request.form.get("taskid")
+    time = request.form.get("time")
+    conn = sqlite3.connect('task.db')
+    c = conn.cursor()
+    c.execute("UPDATE task set time = ? WHERE task_id = ?", (time, task_id))
+    conn.commit()
+    c.close()
+    return 'OK'
+
+@app.route("/picon_push_line_task_regular_time")
+def picon_push_line_task_regular_time():
+    week_num = datetime.date.today().weekday() + 2
+    now = datetime.datetime.now()
+    tmp_hour = int(now.hour)
+    tmp_minute = int(now.minute)
+    date = str(now.date())
+    if tmp_hour < 10:
+        hour = '0' + str(tmp_hour)
+    else:
+        hour = str(tmp_hour)
+    
+    if tmp_minute < 15:
+        minute = '00'
+    elif 15 <= tmp_minute and tmp_minute < 30:
+        minute = '15'
+    elif 30 <= tmp_minute and tmp_minute < 45:
+        minute = '30'
+    else:
+        minute = '45'
+    
+    time = hour + ':' + minute
+    sql = "SELECT user.line_id, task.message FROM task INNER JOIN user on task.user_id = user.user_id WHERE (task.day = 1 or task.day = ? or task.day = ?) and task.time = ?"
+    conn = sqlite3.connect('task.db')
+    c = conn.cursor()
+    c.execute(sql, (week_num, date, time))
+    for result in c.fetchall():
+        line_id = str(result[0])
+        mes = str(result[1])
+        line_bot_api.push_message(line_id, TextSendMessage(text=mes))
+    c.close()
 
 @app.route("/callback", methods=['POST'])
 def callback():

@@ -45,7 +45,7 @@ $(function(){
         }
         JSGET.updateDay(task_id, day);
     });
-    $(document).on('blur', '.task_detail', function () {
+    $(document).on('change', '.task_detail', function () {
         let task_id = $(this).parent()[0].getAttribute('data-id'),
             t = $(this).val().replace(/ /g, ''),
             te = t.replace(/　/g, ''),
@@ -54,27 +54,27 @@ $(function(){
         $(this).val(text);
         JSGET.updateMessage(task_id, text);
     });
-    $(document).on('chenge', '.task_date', function () {
+    $(document).on('change', '.task_date', function () {
         let task_id = $(this).parent()[0].getAttribute('data-id'),
             day = $(this).val();
-        console.log(day);
+        JSGET.updateDay(task_id, day);
     });
-    $(document).on('chenge', '.task_select_day', function () {
+    $(document).on('change', '.task_select_day', function () {
         let task_id = $(this).parent()[0].getAttribute('data-id'),
             day = $(this).val();
-        console.log(day);
+        JSGET.updateDay(task_id, day);
     });
-    $(document).on('chenge', '.task_select_hour', function () {
+    $(document).on('change', '.task_select_hour', function () {
         let target = $(this).parent().children(),
             task_id = $(this).parent()[0].getAttribute('data-id'),
             time = target[4].value + ':' + target[5].value
-        console.log(time);
+        JSGET.updateTime(task_id, time);
     });
-    $(document).on('chenge', '.task_select_hour', function () {
+    $(document).on('change', '.task_select_minutes', function () {
         let target = $(this).parent().children(),
             task_id = $(this).parent()[0].getAttribute('data-id'),
             time = target[4].value + ':' + target[5].value
-        console.log(time);
+        JSGET.updateTime(task_id, time);
     });
 });
 
