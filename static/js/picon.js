@@ -20,6 +20,7 @@ $(function(){
             text = tex.replace(/、/g, '');
         $(this).val(text);
     });
+    //タスクの追加
     $(document).on('click', '.add_task_comment', function () {
         let no_task = $('.no_task').length,
             sort_id = 1;
