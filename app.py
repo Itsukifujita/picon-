@@ -184,7 +184,7 @@ def picon_push_line_task_regular_time():
         minute = '45'
     
     time = hour + ':' + minute
-    sql = "SELECT user.line_id, task.message FROM task INNER JOIN user on task.user_id = user.user_id WHERE (task.day = 1 or task.day = ? or task.day = ?) and task.time = ?"
+    sql = "SELECT user.line_id, task.message FROM task INNER JOIN user on task.user_id = user.user_id WHERE user.line_id != 0 and (task.day = 1 or task.day = ? or task.day = ?) and task.time = ?"
     conn = sqlite3.connect('task.db')
     c = conn.cursor()
     c.execute(sql, (week_num, date, time))
@@ -193,7 +193,7 @@ def picon_push_line_task_regular_time():
         mes = str(result[1])
         line_bot_api.push_message(line_id, TextSendMessage(text=mes))
     c.close()
-    return "OK"
+    return 'OK'
 
 @app.route("/callback", methods=['POST'])
 def callback():
