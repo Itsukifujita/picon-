@@ -1,6 +1,7 @@
 let result = false;
 $(function(){
     JSMOVE.moveIndexLoginCheck();
+    //ログイン処理
     $(document).on('click', '#login_button', function () {
         JSGET.getLoginUserId();
     });
@@ -31,6 +32,7 @@ $(function(){
         }
         JSGET.insertNewTask(sort_id);
     });
+    //タスクの編集
     $(document).on('click', '.chenge_day', function () {
         let target = $(this).parent().children(),
             task_id = $(this).parent()[0].getAttribute('data-id'),
