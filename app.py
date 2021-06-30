@@ -165,7 +165,8 @@ def update_time():
 @app.route("/picon_push_line_task_regular_time")
 def picon_push_line_task_regular_time():
     week_num = datetime.date.today().weekday() + 2
-    now = datetime.datetime.now()
+    tz = datetime.timezone(datetime.timedelta(hours=9))
+    now = datetime.datetime.now(tz)
     tmp_hour = int(now.hour)
     tmp_minute = int(now.minute)
     date = str(now.date())
@@ -193,7 +194,8 @@ def picon_push_line_task_regular_time():
         mes = str(result[1])
         line_bot_api.push_message(line_id, TextSendMessage(text=mes))
     c.close()
-    return 'OK'
+    datetime = date + ' ' + time
+    return datetime
 
 @app.route("/callback", methods=['POST'])
 def callback():

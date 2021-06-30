@@ -87,6 +87,6 @@ const JSVIEW = {
         JSMOVE.moveHideDayContent(array[0], array[3]);
     },
     removeTask: function() {
-        
+        //ここに削除処理書く
     }
 };
