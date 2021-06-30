@@ -68,14 +68,16 @@ const JSGET = {
             dataType: "text",
             timeout: 30000
         }).done(function (res) {
-            if (String(res) === NO_DATA) {
+            let array = res.split(',');
+            if (String(array[0]) === NO_DATA) {
                 html += `<p class="line_nologin_comment">あなたはまだLINE側で登録できていません</p>`
                       + `<p class="line_nologin_comment">QRコードからお友達登録してください</p>`;
             } else {
                 html += `<p class="line_login_comment">友達登録ありがとうございます</p>`
                       + `<p class="line_login_comment">時間がきたらpicon'からメッセージが届きます</p>`;
             }
-            $('#line_check_comment').html(html)
+            $('#line_check_comment').html(html);
+            $('#login_user_name').html(array[1]);
         }).fail(function (jqXHR, textStatus, errorThrown) {
             console.log(jqXHR.status);
             console.log(textStatus);
@@ -173,6 +175,22 @@ const JSGET = {
             type: 'POST',
             data: {taskid: task_id,
                    time: time
+                  },
+            dataType: "text",
+            timeout: 30000
+        }).done(function (res) {
+            
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR.status);
+            console.log(textStatus);
+            console.log(errorThrown);
+        });
+    },
+    deleteTask: function(task_id) {
+        $.ajax({
+            url: '/delete_task',
+            type: 'POST',
+            data: {taskid: task_id
                   },
             dataType: "text",
             timeout: 30000

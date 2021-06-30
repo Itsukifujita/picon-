@@ -1,5 +1,6 @@
 let result = false;
 $(function(){
+    $('.logout_button').hide();
     JSMOVE.moveIndexLoginCheck();
     //ログイン処理
     $(document).on('click', '#login_button', function () {

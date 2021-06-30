@@ -125,6 +125,14 @@ body {
 	position: relative;
 
 }
+#delete_task_list{
+	position: absolute;
+	top: 340px;
+	left: 850px;
+	width: 60px;
+	height: 60px;
+	border: 2px solid #656565;
+}
 #task_list{
 	/* position: relative;
 	left: 0px; */
