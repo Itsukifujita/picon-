@@ -55,6 +55,7 @@ body {
     background-color: #f4f4f4;
     width: auto;
     height: 700px;
+	white-space: nowrap;
 }
 
 
@@ -63,7 +64,7 @@ body {
 	position:relative;
     bottom:0;
 	width: -webkit-fill-available;
-	height: 55px;
+	height: 107px;
 }
 
 /* ログイン画面 */
@@ -106,14 +107,11 @@ body {
 }
 #login_button #entry_button{
 	margin-top:10px;
-	/* margin-right: 5px;
-	margin-left: 200px; */
 }
 .button{
 	font-size: small;
 	display: flex;
-  flex-direction: column;
-	/* margin-left: 690px; */
+    flex-direction: column;
 	margin-top: 10px;
 	align-items: center;
 	position: absolute;
@@ -129,30 +127,59 @@ body {
 	position: relative;
 	top: 600px;
 }
+
+.add_task_comment{
+	font-size: 20px;
+	font-family: Arial, Helvetica, sans-serif;
+	position: absolute;
+	left: 5px;
+	top: 5px;
+}
+
+.add_task_comment:hover{
+	cursor: pointer;
+	color: darkgreen;
+}
+
+/*ゴミ箱*/
+.trash{
+	width: 150px;
+	height: 150px;
+	position: absolute;
+	top:350px;
+	left: 660px;
+}
+/*プラスボタン*/
+.plus{
+	margin-right: 10px;
+	width: 30px;
+	height: 30px;
+}
+
 /* タスクの並び替え部分 ここから*/
 .task_area{
+	display: inline-block;
+	border: 2px solid #656565;
+	width: 830px;
+	height: 560px;
 	position: relative;
-
 }
 #delete_task_list{
 	position: absolute;
-	top: 340px;
-	left: 850px;
-	width: 60px;
-	height: 60px;
-	border: 2px solid #656565;
+	top: 353px;
+	left: 663px;
+	width: 140px;
+	height: 140px;
 }
 #task_list{
-	/* position: relative;
-	left: 0px; */
 	position: absolute;
-	top: -60px;
-	left: 373px;
+	top: 50px;
+	left: 5px;
 	margin: 0 auto;
-	width: 700px;
-	height: 537px;
-	overflow-y: scroll;
+	width: 630px;
+	height: 500px;
 	border: 2px solid #656565;
+	border-radius: 5px;
 }
 .no_task{
     margin: 5px;
@@ -241,29 +268,4 @@ body {
 	font-weight: 400;
 	border-bottom: gray;
     padding: 15px;
-}
-/* ゴミ箱 */
-.trash{
-	width: 100px;
-	height: 100px;
-	position: relative;
-	top:150px;
-	left: 300px;
-}
-
-/* plus */
-/* .button_area{
-	margin-bottom: 0;
-} */
-.plus{
-	width: 30px;
-	height: 30px;
-}
-
-.add_task_comment{
-	font-size: 20px;
-	font-family: Arial, Helvetica, sans-serif;
-	position: absolute;
-	left: 368px;
-	top: 220px;
 }
