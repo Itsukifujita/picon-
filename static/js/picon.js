@@ -14,6 +14,7 @@ $(function(){
             JSGET.getEntryUserId(name, pass);
         }
     });
+    //ログイン時テキストチェック
     $(document).on('blur', '.input_text', function () {
         let t = $(this).val().replace(/ /g, ''),
             te = t.replace(/　/g, ''),
