@@ -194,8 +194,8 @@ def picon_push_line_task_regular_time():
         mes = str(result[1])
         line_bot_api.push_message(line_id, TextSendMessage(text=mes))
     c.close()
-    datetime = date + ' ' + time
-    return datetime
+    dt = date + ' ' + time
+    return dt
 
 @app.route("/callback", methods=['POST'])
 def callback():

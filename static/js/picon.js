@@ -81,4 +81,3 @@ $(function(){
         JSGET.updateTime(task_id, time);
     });
 });
-
