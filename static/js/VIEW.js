@@ -85,8 +85,5 @@ const JSVIEW = {
                  + `</li>`;
         $('#task_list').append(html);
         JSMOVE.moveHideDayContent(array[0], array[3]);
-    },
-    removeTask: function() {
-        //ここに削除処理書く
     }
 };

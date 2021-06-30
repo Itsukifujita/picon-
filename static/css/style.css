@@ -23,12 +23,20 @@ img {
 	vertical-align: bottom;
 }
 
+
+
+
+
+
+
+
 /* ここから */
 body {
     margin: 0;
     display: flex;
     flex-flow: column;
     min-height: 100vh;
+	background-color: #f4f4f4;
 }
 
 #header{
@@ -37,6 +45,11 @@ body {
     width: auto;
     height: 50px;
     
+}
+#login_user_name{
+	position: absolute;
+    top: 12px;
+    right: 300px;
 }
 
 .oneArea{
@@ -60,11 +73,14 @@ body {
 
 #footer{
     background-color:#2d2d2d ;
-	position:relative;
-    bottom:0;
-	width: -webkit-fill-available;
 	height: 55px;
+	width: -webkit-fill-available;
+	position: fixed;
+	bottom: 0;
 }
+
+
+
 
 /* ログイン画面 */
 .box2 {
@@ -114,12 +130,19 @@ body {
 	margin-top: 15px;
 	align-items: center;
 	position: relative;
-    top: 665px;
+    top: 5px;
 }
 #login_error_message{
 	color: rgb(204, 0, 0);
 	margin-top: 20px;
 }
+.logout_button{
+    position: relative;
+    top: 825px;
+}
+
+
+
 /* タスクの並び替え部分 ここから*/
 .task_area{
 	position: relative;
@@ -177,6 +200,31 @@ body {
 #line_check_comment{
 	font-size: small;
     margin-top: 8px;
+}
+.chenge_day{
+	cursor: pointer;
+	cursor: hand;
+	position: relative;
+    left: -30px;
+}
+.chenge_day:hover{
+	color:#85cbbf;
+	font-size: large;
+}
+.task_detail:hover, .task_date:hover, .task_select_hour:hover, .task_select_minutes:hover{
+	background-color: #85cbbf;
+}
+.task_detail{
+	margin: 15px 5px;
+}
+.task_date{
+	margin: 15px 5px;
+}
+.task_select_hour{
+	margin: 15px 5px;
+
+}
+.task_select_minutes{
 }
 
 /* アイコン */
