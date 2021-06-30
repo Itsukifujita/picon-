@@ -1,12 +1,10 @@
 {% extends 'base.html' %}
 {% block content%}
         
-        <a href="/logout" class="logout">ログアウト</a>
         <div class="qrcode_area">
-            <P id="qr_title">QRコード</P>
+            <p id="qr_title">QRコード</p>
             <img class="qrcode_img" src="../static/font/QRcode.png" alt="LineQr">
             <p id="line_check_comment"></p>
-
         </div>
         <div class="lineicon_area">
             <img class="lineicon_img" src="../static/font/picon'maru.png" alt="LineIcon">
@@ -17,8 +15,8 @@
             <p class="add_task_comment"><img class="plus" src="../static/font/名称未設定-1.png" alt="追加ボタン">課題の追加</p>
         </div>
         <div class="task_area">
-            <ul id="task_list"></ul>
-            <ul id="delete_task_list"></ul>
+            <ul id="task_list" class="sort_task"></ul>
+            <ul id="delete_task_list" class="sort_task"></ul>
         </div>
         <div id="index_error"></div>
         

@@ -91,10 +91,11 @@ def get_lineid():
     user_id = session["user_id"]
     conn = sqlite3.connect('task.db')
     c = conn.cursor()
-    c.execute("SELECT line_id FROM user WHERE user_id = ?", (user_id, ))
+    c.execute("SELECT line_id, user_name FROM user WHERE user_id = ?", (user_id, ))
     line_id = c.fetchone()
     c.close()
-    return str(line_id[0])
+    result = str(line_id[0]) + ',' + str(line_id[1])
+    return result
 
 @app.route("/insert_newtask", methods=['POST'])
 def insert_newtask():
@@ -162,6 +163,16 @@ def update_time():
     c.close()
     return 'OK'
 
+@app.route("/delete_task", methods=['POST'])
+def delete_task():
+    task_id = request.form.get("taskid")
+    conn = sqlite3.connect('task.db')
+    c = conn.cursor()
+    c.execute("DELETE from task WHERE task_id = ?", (task_id, ))
+    conn.commit()
+    c.close()
+    return 'OK'
+
 @app.route("/picon_push_line_task_regular_time")
 def picon_push_line_task_regular_time():
     week_num = datetime.date.today().weekday() + 2
@@ -194,8 +205,8 @@ def picon_push_line_task_regular_time():
         mes = str(result[1])
         line_bot_api.push_message(line_id, TextSendMessage(text=mes))
     c.close()
-    datetime = date + ' ' + time
-    return datetime
+    dt = date + ' ' + time
+    return dt
 
 @app.route("/callback", methods=['POST'])
 def callback():

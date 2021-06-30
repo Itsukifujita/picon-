@@ -2,6 +2,7 @@ const JSMOVE = {
     moveIndexLoginCheck: function() {
         if ($('#task_list')[0]) {
             JSMOVE.moveLoadTaskList();
+            $('.logout_button').show();
         }
     },
     moveLoadTaskList: function() {
@@ -103,15 +104,17 @@ const JSMOVE = {
         }
     },
     moveSorttable: function() {
-        $('#task_list').sortable({
+        $('.sort_task').sortable({
             placeholder: 'ui-placeholder',
             cursor: 'move',
+            connectWith: '.sort_task',
             start: function (e, ui) {
                 $(ui.helper).addClass('ui-boxshadow');
             },
             stop: function (e, ui) {
                 $(ui.item).removeClass('ui-boxshadow');
                 JSMOVE.moveSortTask();
+                JSMOVE.moveDeleteTask();
                 JSGET.updateSortId();
             }
         });
@@ -121,6 +124,16 @@ const JSMOVE = {
             len = list.length;
         for (let i = 0; i < len; i++) {
             list[i].setAttribute('data-sort', String(i + 1));
+        }
+    },
+    moveDeleteTask: function() {
+        let list = $('#delete_task_list').children(),
+            len = list.length,
+            task_id;
+        if (len > 0) {
+            task_id = list[0].getAttribute('data-id');
+            JSGET.deleteTask(task_id);
+            $('#delete_task_list').html(``);
         }
     }
 };
