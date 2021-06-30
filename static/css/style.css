@@ -23,13 +23,6 @@ img {
 	vertical-align: bottom;
 }
 
-
-
-
-
-
-
-
 /* ここから */
 body {
     margin: 0;
@@ -114,6 +107,9 @@ body {
 	margin: 15px;
 	font-size: 20px;
 }
+.login_name{
+
+}
 .login_pass{
 	margin-right: 75px;
 }
@@ -127,10 +123,10 @@ body {
 	display: flex;
   flex-direction: column;
 	/* margin-left: 690px; */
-	margin-top: 15px;
+	margin-top: 10px;
 	align-items: center;
 	position: relative;
-    top: 5px;
+  top: 5px;
 }
 #login_error_message{
 	color: rgb(204, 0, 0);
@@ -140,25 +136,28 @@ body {
     position: relative;
     top: 825px;
 }
-
-
-
 /* タスクの並び替え部分 ここから*/
 .task_area{
 	position: relative;
 
 }
+#delete_task_list{
+	position: absolute;
+	top: 340px;
+	left: 850px;
+	width: 60px;
+	height: 60px;
+	border: 2px solid #656565;
+}
 #task_list{
 	/* position: relative;
 	left: 0px; */
 	position: absolute;
-	top: -76px;
-	left: 56px;
+	top: -60px;
+	left: 373px;
 	margin: 0 auto;
-	padding-right: 180px;
-    padding-left: 15px;
 	width: 700px;
-	height: 510px;
+	height: 537px;
 	overflow-y: scroll;
 	border: 2px solid #656565;
 }
@@ -175,9 +174,10 @@ body {
 }
 .task{
 	margin: 5px;
-	height: 50px;
+	height: 52px;
 	border: 1px solid #656565;
 	border-radius: 3px;
+	width: 600px;
 }
 .task:hover{
 	cursor: grab;
@@ -222,9 +222,9 @@ body {
 }
 .task_select_hour{
 	margin: 15px 5px;
-
 }
 .task_select_minutes{
+
 }
 
 /* アイコン */
@@ -235,14 +235,12 @@ body {
 .lineicon_area{
 	display: flex;
 	position: relative;
-	top: -15px;
-	left: 30px;
+	top: 7px;
+    left: 280px;
 	text-align: center;
 }
 .lineicon_area p{
 	font-size: 20px;
-	/* position: relative;
-	top:20px; */
 	margin-top: 30px;
 	font-family: Arial, Helvetica, sans-serif;
 }
@@ -283,9 +281,9 @@ body {
 }
 
 /* plus */
-.button_area{
+/* .button_area{
 	margin-bottom: 0;
-}
+} */
 .plus{
 	width: 30px;
 	height: 30px;
@@ -295,6 +293,6 @@ body {
 	font-size: 20px;
 	font-family: Arial, Helvetica, sans-serif;
 	position: absolute;
-	left: 55px;
-	top: 245px;
+	left: 368px;
+	top: 220px;
 }
