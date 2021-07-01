@@ -41,7 +41,7 @@ body {
 }
 #login_user_name{
 	position: absolute;
-    top: 12px;
+    top: 15px;
     right: 300px;
 }
 
@@ -66,11 +66,11 @@ body {
 
 
 #footer{
-  background-color:#2d2d2d ;
+ 	background-color:#2d2d2d ;
 	position:relative;
-  bottom:0;
+ 	bottom:-18px;
 	width: -webkit-fill-available;
-	height: 107px;
+	height: 60px;
 }
 
 /* ログイン画面 */
@@ -81,12 +81,8 @@ body {
 	width: 500px;
 	height: 250px;
     padding: 85px 1em;
-    /* margin: 0 400px; */
-    /* font-weight: bold; */
-    /* color: #6091d3;文字色 */
-    /* background: #FFF; */
-    border: solid 3px #75ac2d;/*線*/
-    border-radius: 10px;/*角の丸み*/
+    border: solid 3px #75ac2d;
+    border-radius: 10px;
 }
 
 .login_title{
@@ -94,7 +90,6 @@ body {
 	color: #656565;
 	padding-top: 0px;
 	font-size: 50px;
-	/* padding-bottom: 10px; */
 }
 
 .login_name, .login_pass, .button, #login_button{
@@ -128,16 +123,17 @@ body {
 	margin-top: 20px;
 }
 .logout_button{
-    position: relative;
-    top: 825px;
+    position: absolute;
+    top: 15px;
+	right: 200px;
 }
 
 .add_task_comment{
 	font-size: 20px;
 	font-family: Arial, Helvetica, sans-serif;
 	position: absolute;
-	left: 5px;
-	top: 5px;
+	left: 277px;
+	top: 100px;
 }
 
 .add_task_comment:hover{
@@ -163,10 +159,10 @@ body {
 /* タスクの並び替え部分 ここから*/
 .task_area{
 	display: inline-block;
-	border: 2px solid #656565;
 	width: 830px;
 	height: 560px;
 	position: relative;
+	left: -50px;
 }
 #delete_task_list{
 	position: absolute;
@@ -177,13 +173,14 @@ body {
 }
 #task_list{
 	position: absolute;
-	top: 50px;
+	top: 143px;
 	left: 5px;
 	margin: 0 auto;
-	width: 630px;
-	height: 500px;
+	width: 700px;
+	height: 560px;
 	border: 2px solid #656565;
 	border-radius: 5px;
+	overflow-y: scroll;
 }
 .no_task{
     margin: 5px;
@@ -201,7 +198,7 @@ body {
 	height: 52px;
 	border: 1px solid #656565;
 	border-radius: 3px;
-	width: 600px;
+	width: 670px;
 }
 .task:hover{
 	cursor: grab;
@@ -221,10 +218,6 @@ body {
 /* タスクの並び替え部分 ここまで */
 
 /* タスクのcss */
-#line_check_comment{
-	font-size: small;
-    margin-top: 8px;
-}
 .chenge_day{
 	cursor: pointer;
 	cursor: hand;
@@ -247,24 +240,44 @@ body {
 .task_select_hour{
 	margin: 15px 5px;
 }
-.task_select_minutes{
-
+.del_task{
+  width: 100px;
+  height: 50px;
+  background: #fff;
+  border: 0.5px #656565;
+  border-radius: 50%;
+  margin-left: 10px;
+  padding: 0 5px;
+  cursor: pointer;
+  cursor: hand;
 }
+.del_task:hover{
+	background: #85cbbf;
+}
+
 
 /* アイコン */
 .lineicon_img{
 	width: 100px;
 	height: 100px;
-}
-.lineicon_area{
 	display: flex;
 	position: relative;
+	top: 9px;
+    left: 227px;
+}
+.lineicon_area{
+	/* display: flex;
+	position: relative;
 	top: 7px;
-    left: 280px;
+    left: 280px; */
 	text-align: center;
 }
-.lineicon_area p{
-	font-size: 20px;
+.task_title{
+	display: flex;
+	position: relative;
+	top: -107px;
+    left: 324px;
+	font-size: 48px;
 	margin-top: 30px;
 	font-family: Arial, Helvetica, sans-serif;
 }
@@ -279,19 +292,41 @@ body {
 	padding-top: inherit;
 	padding-left: 10px;
 	border-left: 3px solid #fff;
+	position: fixed;
+	top: 130px;
+	right: 0px;
+
+}
+.prcode{
+	position: fixed;
+	top: 130px;
+	right: 0px;
+
 }
 .qrcode_img{
 	width: 130px;
 	height: auto;
 	margin-top: 10px;
-
+	position: absolute;
+    left: 1050px;
+	top: 65px;
+}
+#line_check_comment{
+	font-size: small;
+    margin-top: 8px;
+	position: absolute;
+    top: 200px;
+    left: 990px;
 }
 #qr_title{
 	color: #ff5200;
 	font-family: Arial, Helvetica, sans-serif;
-	font-size: large;
+	font-size: 20px;
 	margin-top: 10px;
 	font-weight: 400;
 	border-bottom: gray;
     padding: 15px;
+	position: absolute;
+    left: 1055px;
+	top: 8px;
 }
