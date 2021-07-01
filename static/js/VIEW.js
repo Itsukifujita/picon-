@@ -15,6 +15,7 @@ const JSVIEW = {
                   +     JSVIEW.createSelectDay(res[i][3])
                   +     JSVIEW.createSelectHour(res[i][4])
                   +     JSVIEW.createSelectMinuites(res[i][4])
+                  +     `<span class="del_task">×</span>`
                   + `</li>`;
         }
         $('#task_list').html(html);
@@ -82,6 +83,7 @@ const JSVIEW = {
                  +     JSVIEW.createSelectDay(array[3])
                  +     JSVIEW.createSelectHour(array[4])
                  +     JSVIEW.createSelectMinuites(array[4])
+                 +     `<span class="del_task">×</span>`
                  + `</li>`;
         $('#task_list').append(html);
         JSMOVE.moveHideDayContent(array[0], array[3]);

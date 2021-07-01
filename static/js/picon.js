@@ -81,4 +81,11 @@ $(function(){
             time = target[4].value + ':' + target[5].value
         JSGET.updateTime(task_id, time);
     });
+    $(document).on('click', '.del_task', function () {
+        let task_id = $(this).parent()[0].getAttribute('data-id');
+        JSGET.deleteTask(task_id);
+        $(this).parent().remove()
+        JSMOVE.moveSortTask();
+        JSGET.updateSortId();
+    });
 });

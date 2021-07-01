@@ -104,17 +104,15 @@ const JSMOVE = {
         }
     },
     moveSorttable: function() {
-        $('.sort_task').sortable({
+        $('#task_list').sortable({
             placeholder: 'ui-placeholder',
             cursor: 'move',
-            connectWith: '.sort_task',
             start: function (e, ui) {
                 $(ui.helper).addClass('ui-boxshadow');
             },
             stop: function (e, ui) {
                 $(ui.item).removeClass('ui-boxshadow');
                 JSMOVE.moveSortTask();
-                JSMOVE.moveDeleteTask();
                 JSGET.updateSortId();
             }
         });
@@ -124,16 +122,6 @@ const JSMOVE = {
             len = list.length;
         for (let i = 0; i < len; i++) {
             list[i].setAttribute('data-sort', String(i + 1));
-        }
-    },
-    moveDeleteTask: function() {
-        let list = $('#delete_task_list').children(),
-            len = list.length,
-            task_id;
-        if (len > 0) {
-            task_id = list[0].getAttribute('data-id');
-            JSGET.deleteTask(task_id);
-            $('#delete_task_list').html(``);
         }
     }
 };
