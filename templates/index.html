@@ -1,20 +1,14 @@
 {% extends 'base.html' %}
 {% block content%}
         
-        <div class="qrcode_area">
+          <div class="task_area">
             <p id="qr_title">QRコード</p>
             <img class="qrcode_img" src="../static/font/QRcode.png" alt="LineQr">
             <p id="line_check_comment"></p>
-        </div>
-        <div class="lineicon_area">
             <img class="lineicon_img" src="../static/font/picon'maru.png" alt="LineIcon">
-            <p>Picon'</p>
-        </div>
-        <div class="task_area">
+            <p class="task_title">Picon'</p>
             <p class="add_task_comment"><img class="plus" src="../static/font/名称未設定-1.png" alt="追加ボタン">課題の追加</p>
-            <img class="trash" src="../static/font/名称未設定re.png" alt="ゴミ箱">
-            <ul id="task_list" class="sort_task"></ul>
-            <ul id="delete_task_list" class="sort_task"></ul>
+            <ul id="task_list"></ul>
         </div>
         <div id="index_error"></div>
         
